@@ -15,7 +15,6 @@ environment.ApplicationName = "Otel API";
 
 // In order to retrieve a configuration value, we use the IConfiguration interface.
 // Whereas if we want to add a new configuration source, we use the IConfigurationBuilder interface.
-// If we want to add a new configuration source, we can use the Add* methods provided by the IConfigurationBuilder interface.
 
 builder.Configuration.AddInMemoryCollection(new Dictionary<string, string?>
 {
