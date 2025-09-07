@@ -1,7 +1,16 @@
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-ConfigurationManager configurationManager = builder.Configuration;
+
+// Environment
 IWebHostEnvironment environment = builder.Environment;
 environment.ApplicationName = "Otel API";
+
+// IHost
+ConfigureHostBuilder host = builder.Host;
+ConfigureWebHostBuilder webHost = builder.WebHost;
+
+// The ConfigurationManager is used to manage application configuration,
+// read and register configuration sources.
+ConfigurationManager configurationManager = builder.Configuration;
 
 // The ConfigurationManager was introduced in .NET 6 and implements both IConfiguration and IConfigurationBuilder.
 // We can use it to read configuration values and add new configuration sources.
@@ -12,14 +21,6 @@ environment.ApplicationName = "Otel API";
 // 3. User secrets (if the environment is Development and the project has user secrets enabled)
 // 4. Environment variables
 // 5. Command-line arguments
-
-// In order to retrieve a configuration value, we use the IConfiguration interface.
-// Whereas if we want to add a new configuration source, we use the IConfigurationBuilder interface.
-
-builder.Configuration.AddInMemoryCollection(new Dictionary<string, string?>
-{
-    { "MyCustomSetting", "MyCustomValue" }
-});
 
 // We can also create a configutation Builder from scratch and add configuration sources to it, and the add it to the WebApplicationBuilder configuration.
 ConfigurationBuilder customConfigurationBuilder = new();
