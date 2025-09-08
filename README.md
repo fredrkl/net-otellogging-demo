@@ -59,7 +59,12 @@ builder.Logging.AddOpenTelemetry(...);
 We start by adding the necessary NuGet packages:
 
 ```bash
-dotnet add package OpenTelemetry.Extensions.Hosting
-dotnet add package OpenTelemetry.Logs
+dotnet add package OpenTelemetry
 dotnet add package OpenTelemetry.Exporter.Console
+```
+
+Now if we want to send the logs to an OTel collector, we can use the:
+
+```bash
+dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
 ```
