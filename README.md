@@ -68,3 +68,28 @@ Now if we want to send the logs to an OTel collector, we can use the:
 ```bash
 dotnet add package OpenTelemetry.Exporter.OpenTelemetryProtocol
 ```
+
+### OTel logging setup
+
+In order to test the OTel setup we will use the OpenTelemetry Collector, which
+can be run as a Docker container. The collector can receive logs, metrics, and
+traces.
+
+```bash
+docker run --rm -p 4317:4317 -p 4318:4318 \
+  -v "$(pwd)/otel-collector-config.yaml":/etc/otelcol/config.yaml \
+  otel/opentelemetry-collector:latest
+```
+
+If your app is running on your local machine and the collector is running in
+Docker, you can still use `localhost` as the endpoint:
+
+```sh
+export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
+```
+
+or
+
+```sh
+export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4318"
+```
