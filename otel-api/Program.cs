@@ -12,16 +12,6 @@ ConfigureWebHostBuilder webHost = builder.WebHost;
 // read and register configuration sources.
 ConfigurationManager configurationManager = builder.Configuration;
 
-// The ConfigurationManager was introduced in .NET 6 and implements both IConfiguration and IConfigurationBuilder.
-// We can use it to read configuration values and add new configuration sources.
-// Since we used the WebApplication.CreateBuilder method to create the builder,
-// it already has some configuration sources added by default. The sources added by default are:
-// 1. appsettings.json
-// 2. appsettings.{Environment}.json
-// 3. User secrets (if the environment is Development and the project has user secrets enabled)
-// 4. Environment variables
-// 5. Command-line arguments
-
 // We can also create a configutation Builder from scratch and add configuration sources to it, and the add it to the WebApplicationBuilder configuration.
 ConfigurationBuilder customConfigurationBuilder = new();
 customConfigurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
