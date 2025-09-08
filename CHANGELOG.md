@@ -1,3 +1,9 @@
+# [v1.1.0](https://github.com/fredrkl/net-otellogging-demo/compare/v1.0.0...v1.1.0) (2025-09-08)
+
+## ✨ New Features
+- [`a03c6e4`](https://github.com/fredrkl/net-otellogging-demo/commit/a03c6e4)  Collector 
+- [`50ec678`](https://github.com/fredrkl/net-otellogging-demo/commit/50ec678)  OTel exporter
+
 # v1.0.0 (2025-09-04)
 
 ## ✨ New Features
