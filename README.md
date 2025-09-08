@@ -87,9 +87,3 @@ Docker, you can still use `localhost` as the endpoint:
 ```sh
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
 ```
-
-or
-
-```sh
-export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4318"
-```
