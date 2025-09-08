@@ -1,3 +1,6 @@
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Environment
@@ -23,6 +26,28 @@ customConfigurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
 IConfigurationRoot configurationRoot = customConfigurationBuilder.Build();
 configurationManager.AddConfiguration(configurationRoot);
 
+var otlpEndpoint = Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT");
+
+// Logging
+builder.Logging.AddOpenTelemetry(options =>
+{
+    options.IncludeScopes = true;
+    options.ParseStateValues = true;
+    options.IncludeFormattedMessage = true;
+    options.AddConsoleExporter();
+    options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName: "OTEL Demo Application", serviceVersion: "1.0.0"));
+
+    if (!string.IsNullOrEmpty(otlpEndpoint))
+    {
+        Console.WriteLine($"Using OTLP endpoint: {otlpEndpoint}");
+        options.AddOtlpExporter(otlpOptions =>
+        {
+            otlpOptions.Endpoint = new Uri(otlpEndpoint);
+            otlpOptions.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
+        });
+    }
+});
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -38,15 +63,14 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
-
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/weatherforecast", (ILogger<WeatherForecast> logger) =>
 {
+    logger.LogInformation("Weather forecast endpoint called");
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
