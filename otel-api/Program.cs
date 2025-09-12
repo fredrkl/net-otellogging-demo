@@ -70,7 +70,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", (ILogger<WeatherForecast> logger) =>
 {
-    logger.LogInformation("Weather forecast endpoint called");
+    logger.LogError("A critical error occured");
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
