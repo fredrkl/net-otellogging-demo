@@ -1,3 +1,8 @@
+# [v1.2.0](https://github.com/fredrkl/net-otellogging-demo/compare/v1.1.0...v1.2.0) (2025-09-08)
+
+## ✨ New Features
+- [`e2f9cbe`](https://github.com/fredrkl/net-otellogging-demo/commit/e2f9cbe)  Cleanup README
+
 # [v1.1.0](https://github.com/fredrkl/net-otellogging-demo/compare/v1.0.0...v1.1.0) (2025-09-08)
 
 ## ✨ New Features
