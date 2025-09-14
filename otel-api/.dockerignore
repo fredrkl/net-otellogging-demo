@@ -1,0 +1,4 @@
+/bin/*
+/obj/*
+otel-api.http
+/out/*
