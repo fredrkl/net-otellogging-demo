@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: otel-demo
+  name: otel-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otel-demo
+  template:
+    metadata:
+      labels:
+        app: otel-demo
+    spec:
+      containers:
+        - image: fredrkl/otel-demo:2
+          name: otel-demo
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "main-collector.otel.svc.cluster.local:4317"
