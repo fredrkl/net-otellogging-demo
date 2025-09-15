@@ -13,12 +13,6 @@ environment.ApplicationName = "Otel API";
 ConfigureHostBuilder host = builder.Host;
 ConfigureWebHostBuilder webHost = builder.WebHost;
 
-webHost.ConfigureKestrel(options =>
-{
-    options.AddServerHeader = false;
-    options.ListenAnyIP(8000);
-});
-
 // CONFIGURATION-MANAGER
 /////////////////////////
 // The ConfigurationManager is used to manage application configuration, read and register configuration sources.
