@@ -1,4 +1,4 @@
-@otel_api_HostAddress = http://localhost:5279
+@otel_api_HostAddress = http://localhost:8000
 
 GET {{otel_api_HostAddress}}/weatherforecast/
 Accept: application/json

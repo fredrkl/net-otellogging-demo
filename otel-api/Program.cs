@@ -11,6 +11,11 @@ environment.ApplicationName = "Otel API";
 ConfigureHostBuilder host = builder.Host;
 ConfigureWebHostBuilder webHost = builder.WebHost;
 
+webHost.ConfigureKestrel(options =>
+{
+    options.AddServerHeader = false;
+    options.ListenAnyIP(8000);
+});
 // The ConfigurationManager is used to manage application configuration,
 // read and register configuration sources.
 ConfigurationManager configurationManager = builder.Configuration;
@@ -37,7 +42,7 @@ builder.Logging.AddOpenTelemetry(options =>
     options.AddConsoleExporter();
     options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName: "OTEL Demo Application", serviceVersion: "1.0.0"));
 
-    if (!string.IsNullOrEmpty(otlpEndpoint))
+    if (!string.IsNullOrEmpty(otlpEndpoint) && Uri.IsWellFormedUriString(otlpEndpoint, UriKind.Absolute))
     {
         Console.WriteLine($"Using OTLP endpoint: {otlpEndpoint}");
         options.AddOtlpExporter(otlpOptions =>
