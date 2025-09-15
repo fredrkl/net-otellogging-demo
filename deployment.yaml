@@ -16,7 +16,7 @@ spec:
         app: otel-demo
     spec:
       containers:
-        - image: fredrkl/otel-demo:5
+        - image: fredrkl/otel-demo:8
           name: otel-demo
           env:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
