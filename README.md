@@ -87,3 +87,11 @@ Docker, you can still use `localhost` as the endpoint:
 ```sh
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
 ```
+
+## Access Grafana
+
+```bash
+k port-forward deployments/kube-prometheus-stack-grafana 3000:3000 -n kube-prometheus-stack
+```
+
+The default username is `admin` and password is `prom-operator`.
