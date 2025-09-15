@@ -13,4 +13,5 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:10.0@sha256:5b558c0d5f65031e34528f0c68c954f03f4db77ee18504cad183d239328f55ca AS runtime
 WORKDIR /app
 COPY --from=build /app/out ./
+EXPOSE 8000
 ENTRYPOINT ["dotnet", "otel-api.dll"]

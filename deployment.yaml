@@ -16,8 +16,8 @@ spec:
         app: otel-demo
     spec:
       containers:
-        - image: fredrkl/otel-demo:2
+        - image: fredrkl/otel-demo:5
           name: otel-demo
           env:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
-              value: "main-collector.otel.svc.cluster.local:4317"
+              value: "http://main-collector.otel.svc.cluster.local:4317"

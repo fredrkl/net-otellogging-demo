@@ -1,3 +1,8 @@
+# [v1.3.1](https://github.com/fredrkl/net-otellogging-demo/compare/v1.3.0...v1.3.1) (2025-09-15)
+
+## 🐛 Bug Fixes
+- [`d45757e`](https://github.com/fredrkl/net-otellogging-demo/commit/d45757e)  Using the correct port and exposing it
+
 # [v1.3.0](https://github.com/fredrkl/net-otellogging-demo/compare/v1.2.0...v1.3.0) (2025-09-12)
 
 ## ✨ New Features
