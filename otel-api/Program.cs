@@ -3,11 +3,13 @@ using OpenTelemetry.Resources;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Environment
+// ENVIRONMENT
+/////////////////////////
 IWebHostEnvironment environment = builder.Environment;
 environment.ApplicationName = "Otel API";
 
-// IHost
+// IHOST
+/////////////////////////
 ConfigureHostBuilder host = builder.Host;
 ConfigureWebHostBuilder webHost = builder.WebHost;
 
@@ -16,11 +18,13 @@ webHost.ConfigureKestrel(options =>
     options.AddServerHeader = false;
     options.ListenAnyIP(8000);
 });
-// The ConfigurationManager is used to manage application configuration,
-// read and register configuration sources.
+
+// CONFIGURATION-MANAGER
+/////////////////////////
+// The ConfigurationManager is used to manage application configuration, read and register configuration sources.
 ConfigurationManager configurationManager = builder.Configuration;
 
-// We can also create a configutation Builder from scratch and add configuration sources to it, and the add it to the WebApplicationBuilder configuration.
+// We can also create a configutation Builder from scratch and add configuration sources to it, and then add it to the WebApplicationBuilder configuration.
 ConfigurationBuilder customConfigurationBuilder = new();
 customConfigurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
 {
@@ -31,6 +35,8 @@ customConfigurationBuilder.AddInMemoryCollection(new Dictionary<string, string?>
 IConfigurationRoot configurationRoot = customConfigurationBuilder.Build();
 configurationManager.AddConfiguration(configurationRoot);
 
+// LOGGING
+/////////////////////////
 var otlpEndpoint = Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT");
 
 // Logging
