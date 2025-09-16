@@ -5,6 +5,7 @@ metadata:
   labels:
     app: otel-demo
   name: otel-demo
+  namespace: otel
 spec:
   replicas: 1
   selector:
