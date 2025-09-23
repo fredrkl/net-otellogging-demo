@@ -1,6 +1,7 @@
 using OpenTelemetry.Logs;
 using OpenTelemetry.Resources;
 
+// WEBAPPLICATIONBUILDER
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // ENVIRONMENT
